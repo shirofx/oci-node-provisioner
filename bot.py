@@ -31,7 +31,7 @@ if not public_ssh_key or public_ssh_key.strip() == "":
 
 ads = ["eu-marseille-1-AD-1", "eu-marseille-1-AD-2", "eu-marseille-1-AD-3"]
 
-total_attempts = 60
+total_attempts = 10
 
 for i in range(1, total_attempts + 1):
     current_ad = ads[(i - 1) % len(ads)]
@@ -70,9 +70,9 @@ for i in range(1, total_attempts + 1):
 
     except oci.exceptions.ServiceError as e:
         if "Out of host capacity" in str(e) or e.status == 500:
-            print(f"-> Capacity Unavailable. Resting 60 seconds...")
+            print(f"-> Capacity Unavailable. Resting 30 seconds...")
         else:
             print(f"-> API Error: {e.message}")
 
     if i < total_attempts:
-        time.sleep(60)
+        time.sleep(30)
