@@ -29,7 +29,7 @@ if not public_ssh_key or public_ssh_key.strip() == "":
     print("CRITICAL ERROR: OCI_PUBLIC_SSH_KEY is empty or missing from your secrets!")
     exit(1)
 
-ads = ["uufj:PHX-AD-1", "uufj:PHX-AD-2", "uufj:PHX-AD-3"]
+ads = ["eu-marseille-1-AD-1", "eu-marseille-1-AD-2", "eu-marseille-1-AD-3"]
 
 total_attempts = 60
 
