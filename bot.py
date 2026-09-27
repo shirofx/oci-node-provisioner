@@ -75,4 +75,4 @@ for i in range(1, total_attempts + 1):
             print(f"-> API Error: {e.message}")
 
     if i < total_attempts:
-        time.sleep(30)
+        time.sleep(60)
