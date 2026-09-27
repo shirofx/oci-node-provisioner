@@ -31,17 +31,11 @@ if not public_ssh_key or public_ssh_key.strip() == "":
 
 ads = ["uufj:PHX-AD-1", "uufj:PHX-AD-2", "uufj:PHX-AD-3"]
 
-shapes = [
-    {"ocpus": 2, "memory_in_gbs": 12},
-    {"ocpus": 1, "memory_in_gbs": 6},
-]
-
 total_attempts = 60
 
 for i in range(1, total_attempts + 1):
     current_ad = ads[(i - 1) % len(ads)]
-    shape = shapes[(i - 1) // len(ads) % len(shapes)]
-    print(f"[Attempt {i}/{total_attempts}] Requesting instance in {current_ad} with {shape['ocpus']} OCPU / {shape['memory_in_gbs']} GB...")
+    print(f"[Attempt {i}/{total_attempts}] Requesting instance in {current_ad} with 2 OCPU / 12 GB...")
 
     try:
         request = oci.core.models.LaunchInstanceDetails(
@@ -50,8 +44,8 @@ for i in range(1, total_attempts + 1):
             availability_domain=current_ad,
             shape="VM.Standard.A1.Flex",
             shape_config=oci.core.models.LaunchInstanceShapeConfigDetails(
-                ocpus=shape["ocpus"],
-                memory_in_gbs=shape["memory_in_gbs"]
+                ocpus=2,
+                memory_in_gbs=12
             ),
             source_details=oci.core.models.InstanceSourceViaImageDetails(
                 source_type="image",
